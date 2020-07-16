@@ -1,0 +1,80 @@
+pages {
+  position: relative;
+  z-index: 9999998;
+  background: #fff;
+}
+.navbar {
+  position: relative;
+  height: 4rem;
+  width: 100%;
+  background-color: #AA0100;
+  color: #fff;
+  text-indent: 1rem;
+  line-height: 5rem;
+}
+
+.login-view {
+  background-color: #AA0100;
+  display: flex;
+  justify-content: space-between;
+}
+
+.btn-back {
+  display: inline-block;
+  color: #fff;
+}
+.btn-sign-in, .btn-sign-up {
+  display: inline-block;
+  color: #fff;
+  padding: 0.5rem 2rem;
+  font-size: 0.5rem;
+}
+
+.logo-view {
+  text-align: center;
+}
+.logo-view .logo {
+  width: 5rem;
+  margin: 1rem;
+}
+
+.input-view {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  /* background-color: beige; */
+}
+.input-view input {
+  display: inline-block;
+  text-align: left;
+  height: 1.6rem;
+  padding-left: 0.5rem;
+  border: 0.05rem #AA0100 solid;
+  width: 58%;
+  font-size: 0.5rem;
+  border-radius: 0.2rem;
+}
+
+.btn {
+  display: inline-block;
+  font-size: 0.8rem;
+  height: 1.6rem;
+  line-height: 1.6rem;
+  padding: 0 1rem;
+  margin: 0 0.2rem;
+  border-radius: 0.2rem;
+  background-color: #AA0100;
+  color: #fff;
+}
+.btn-select-companies {
+  width: 80%;
+  text-align: center;
+  font-size: 0.8rem;
+  height: 1.6rem;
+  line-height: 1.6rem;
+  padding: 0.2rem 0;
+  margin: 1rem auto;
+  border-radius: 0.2rem;
+  background-color: #AA0100;
+  color: #fff;
+}

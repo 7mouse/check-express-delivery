@@ -1,0 +1,22 @@
+<!--index.wxml-->
+<view class="container">
+  <view class="navbar">
+    云创动力查快递
+  </view>
+  <view class="login-view">
+    <view class="btn-sign-up">
+      注册
+    </view>
+    <view class="btn-sign-in">
+      登陆
+    </view>
+  </view>
+  <view class="logo-view">
+    <image src="./logo.png" class="logo" mode="widthFix"></image>
+  </view>
+  <view class="input-view">
+    <input placeholder="请输入快递单号"></input>
+    <view class="btn">查询</view>
+  </view>
+  <view class="btn-select-companies">点击选择快递公司</view>
+</view>
