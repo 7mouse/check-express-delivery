@@ -1,22 +1,39 @@
 <!--index.wxml-->
 <view class="container">
-  <view class="navbar">
-    云创动力查快递
-  </view>
-  <view class="login-view">
-    <view class="btn-sign-up">
-      注册
-    </view>
-    <view class="btn-sign-in">
-      登陆
-    </view>
-  </view>
+  <nav-bar navbar-data="{{navbarData}}"></nav-bar>
   <view class="logo-view">
     <image src="./logo.png" class="logo" mode="widthFix"></image>
-  </view>
+  </view> 
   <view class="input-view">
-    <input placeholder="请输入快递单号"></input>
-    <view class="btn">查询</view>
+    <view class="input">
+      <input placeholder="请输入快递单号" model:value="{{number}}" bindinput="bindNumber"></input>
+      <image src="./2.svg" class="btn-scan" mode="widthFix"></image>
+    </view>
+      <view class="btn-check" catchtap="getContent">查询</view>
   </view>
-  <view class="btn-select-companies">点击选择快递公司</view>
+  <!-- <view >点击选择快递公司</view>  -->
+
+  <picker header-text="快递公司" bindchange="bindPickerChange" range="{{objectArray}}" range-key="name">
+    <view wx:if="{{index == 0}}" class="btn-select-companies">
+      点击选择快递公司
+    </view>
+    <view wx:else class="btn-select-companies">
+      快递公司：{{objectArray[index].name}}
+    </view>
+  </picker>
+
+  <scroll-view class="list-info" wx:if="{{showInfo}}">
+    <view class="infoTop">
+      <view>单号:{{infoTop.number}}</view>
+      <view>快递:{{infoTop.name}}</view>
+      <view>快递状态:{{infoTop.status}}</view>
+      <view>快递员:{{infoTop.courier}}</view>
+      <view>联系方式:{{infoTop.courierPhone}}</view>
+    </view>
+    <view>快递路径:</view>
+    <view wx:for="{{list}}" wx:if="list != []"  wx:for-item="item" wx:key="time">
+      <view>Time: {{item.time}}</view>
+      <view>Info: {{item.status}}</view>
+    </view>
+  </scroll-view>
 </view>

@@ -1,80 +1,84 @@
-pages {
-  position: relative;
-  z-index: 9999998;
-  background: #fff;
-}
-.navbar {
-  position: relative;
-  height: 4rem;
-  width: 100%;
-  background-color: #AA0100;
-  color: #fff;
-  text-indent: 1rem;
-  line-height: 5rem;
-}
-
-.login-view {
-  background-color: #AA0100;
-  display: flex;
-  justify-content: space-between;
-}
-
-.btn-back {
-  display: inline-block;
-  color: #fff;
-}
-.btn-sign-in, .btn-sign-up {
-  display: inline-block;
-  color: #fff;
-  padding: 0.5rem 2rem;
-  font-size: 0.5rem;
+.container {
 }
 
 .logo-view {
   text-align: center;
 }
 .logo-view .logo {
-  width: 5rem;
-  margin: 1rem;
+  width: 200rpx;
+  margin: 40rpx;
 }
 
 .input-view {
   display: flex;
+  width: 90%;
+  height: 60rpx;
+  margin: 0 auto;
+  justify-content: space-between;
   align-items: center;
-  justify-content: center;
   /* background-color: beige; */
 }
-.input-view input {
-  display: inline-block;
+.input-view .input{
+  position: relative;
   text-align: left;
-  height: 1.6rem;
-  padding-left: 0.5rem;
-  border: 0.05rem #AA0100 solid;
-  width: 58%;
-  font-size: 0.5rem;
-  border-radius: 0.2rem;
+  height: 100%;
+  width: 100%;
+  padding-left: 20rpx;
+  border: 0.2rpx #AA0100 solid;
+  font-size: 30rpx;
+  border-radius: 8rpx;
+  margin-right: 10rpx;
+}
+.input-view .input input {
+  display: inline-block;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 90%;
 }
 
-.btn {
-  display: inline-block;
-  font-size: 0.8rem;
-  height: 1.6rem;
-  line-height: 1.6rem;
-  padding: 0 1rem;
-  margin: 0 0.2rem;
-  border-radius: 0.2rem;
+.btn-scan {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  right: 0;
+  color: #AA0100;
+  width: 12%;
+}
+
+.btn-check {
+  text-align: center;
+  font-size: 30rpx;
+  width: 20%;
+  height: 90%;
+  padding: 0 40rpx;
+  padding-top: 10rpx;
+  border-radius: 8rpx;
   background-color: #AA0100;
   color: #fff;
 }
+
 .btn-select-companies {
-  width: 80%;
+  width: 90%;
   text-align: center;
-  font-size: 0.8rem;
-  height: 1.6rem;
-  line-height: 1.6rem;
-  padding: 0.2rem 0;
-  margin: 1rem auto;
-  border-radius: 0.2rem;
+  font-size: 30rpx;
+  height: 60rpx;
+  line-height: 60rpx;
+  padding: 10rpx 0;
+  margin: 20rpx auto;
+  border-radius: 8rpx;
   background-color: #AA0100;
   color: #fff;
+}
+
+.list-info {
+  width: 90%;
+  background-color: #FFFFFF;
+  margin: 0 auto;
+}
+
+.list-info view {
+  font-size: 20rpx;
+  color: black;
+  margin: 20rpx 0;
 }

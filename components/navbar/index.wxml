@@ -1,0 +1,17 @@
+<!--components/navbar/index.wxml-->
+<view class="navbar">
+  <view class="nav-wrap">
+    <view class="nav-icon" wx:if="{{navbarData.show && globalData.share }}">
+      <image src="./back.svg"></image>
+    </view>
+    <view class="nav-title">云创动力查快递</view>
+  </view>
+</view>
+<view class="login-view">
+  <view class="btn-sign-up">
+    注册
+  </view>
+  <view class="btn-sign-in">
+    登陆
+  </view>
+</view>
