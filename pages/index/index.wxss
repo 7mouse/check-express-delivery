@@ -1,6 +1,3 @@
-.container {
-}
-
 .logo-view {
   text-align: center;
 }
@@ -34,7 +31,7 @@
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
-  width: 90%;
+  width: 80%;
 }
 
 .btn-scan {

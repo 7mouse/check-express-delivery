@@ -20,5 +20,7 @@ App({
   globalData: {
     share: false,
     height: 0
-  }
+  },
+  position: [],
+  list: {}
 })

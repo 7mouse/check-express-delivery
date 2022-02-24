@@ -58,80 +58,87 @@ Page({
     infoTop: {},
     list: [],
     showInfo: false,
-    deliverystatus: ["快递收件", "在途中", "正在派送", "已签收", "派送失败", "疑难件", "退件签收"]
+    deliverystatus: ["快递收件", "在途中", "正在派送", "已签收", "派送失败", "疑难件", "退件签收"],
+    res: {}
   },
   getContent: function() {
-    getLogisticsInformation(this.data.number,this.data.type, 
-    function(res){
-      this.setData({
-        showInfo: true,
-        infoTop: {
-          "number": res.data.result.number,
-          "name": res.data.result.expName,
-          "status": this.data.deliverystatus[res.data.result.deliverystatus],
-          "courier": res.data.result.courier,
-          "courierPhone": res.data.result.courierPhone
-        },
-        list: res.data.result.list
-      })
-    },
-    function(){
-      wx.showToast({
-        title: '查询失败',
-        icon: 'warn',    //如果要纯文本，不要icon，将值设为'none'
-        duration: 2000     
-      })  
-    })
-    // console.log(this.data.number, this.data.array[this.data.index]);
-
-
-
-    // let res = {}
-    // res.data = {
-    //   "status": "0",/* status 0:正常查询 201:快递单号错误 203:快递公司不存在 204:快递公司识别失败 205:没有信息 207:该单号被限制，错误单号 */
-    //   "msg": "ok",
-    //   "result": {
-    //     "number": "780098068058",
-    //     "type": "zto",
-    //     "list": [{
-    //       "time": "2018-03-09 11:59:26",
-    //       "status": "【石家庄市】快件已在【长安三部】 签收,签收人: 本人,感谢使用中通快递,期待再次为您服务!"
-    //     }, {
-    //       "time": "2018-03-09 09:03:10",
-    //       "status": "【石家庄市】 快件已到达 【长安三部】（0311-85344265）,业务员 容晓光（13081105270） 正在第1次派件, 请保持电话畅通,并耐心等待"
-    //     }, {
-    //       "time": "2018-03-08 23:43:44",
-    //       "status": "【石家庄市】 快件离开 【石家庄】 发往 【长安三部】"
-    //     }, {
-    //       "time": "2018-03-08 21:00:44",
-    //       "status": "【石家庄市】 快件到达 【石家庄】"
-    //     }, {
-    //       "time": "2018-03-07 01:38:45",
-    //       "status": "【广州市】 快件离开 【广州中心】 发往 【石家庄】"
-    //     }, {
-    //       "time": "2018-03-07 01:36:53",
-    //       "status": "【广州市】 快件到达 【广州中心】"
-    //     }, {
-    //       "time": "2018-03-07 00:40:57",
-    //       "status": "【广州市】 快件离开 【广州花都】 发往 【石家庄中转】"
-    //     }, {
-    //       "time": "2018-03-07 00:01:55",
-    //       "status": "【广州市】 【广州花都】（020-37738523） 的 马溪 （18998345739） 已揽收"
-    //     }],
-    //     "deliverystatus": "3", /* 0：快递收件(揽件)1.在途中 2.正在派件 3.已签收 4.派送失败 5.疑难件 6.退件签收  */
-    //     "issign": "1",                      /*  1.是否签收                  */
-    //     "expName": "中通快递",              /*  快递公司名称                */       
-    //     "expSite": "www.zto.com",           /*  快递公司官网                */
-    //     "expPhone": "95311",                /*  快递公司电话                */
-    //     "courier": "容晓光",                /*  快递员 或 快递站(没有则为空)*/
-    //     "courierPhone":"13081105270",       /*  快递员电话 (没有则为空)     */
-    //     "updateTime":"2019-08-27 13:56:19", /*  快递轨迹信息最新时间        */
-    //     "takeTime":"2天20小时14分",         /*  发货到收货消耗时长 (截止最新轨迹)  */
-    //     "logo":"https://img3.fegine.com/express/zto.jpg" /* 快递公司LOGO */
-    //   }
+    const that = this
+    let url = `https://wuliu.market.alicloudapi.com/kdi`
+    // if(that.data.type) {
+    //   url += `&type=`+that.data.type
     // }
-    
-  }, 
+    console.log(url);
+    let query = "";
+    if (that.data.number) {
+      query += "?no="+that.data.number
+      if (that.data.type) {
+        query += "&type="+that.data.type
+      }
+      url+= query
+      console.log("开始查询");
+      
+      wx.request({
+        url: url,
+        method: 'GET',
+        header: {
+          // 'content-type': 'application/json',        
+          'Authorization': 'APPCODE 1eb6a5d788e24b1bafca11c0dfbcb67d'
+        },
+        success: function(res){
+          if(res.status != '205')
+          {
+            wx.showToast({
+              title: '查询成功',
+              content: res,
+              icon: 'warn',    //如果要纯文本，不要icon，将值设为'none'
+              duration: 2000     
+            }) 
+            app.list = res.data.result.list;
+            that.setData({
+              infoTop: {
+                "number": res.data.result.number ,
+                "name": res.data.result.expName,
+                "status": that.data.deliverystatus[res.data.result.deliverystatus] ,
+                "courier": res.data.result.courier,
+                "courierPhone": res.data.result.courierPhone
+              },
+              res: res,
+              list: res.data.result.list
+            })
+            if(that.data.list) {
+              that.setData({
+                showInfo: true
+              })
+              wx.navigateTo({
+                url: '/pages/map/map',
+              })
+            }
+          }
+          if (res.data.status == '205') {
+            wx.showToast({
+              title: '未查询到',
+              icon: 'none',    //如果要纯文本，不要icon，将值设为'none'
+              duration: 2000     
+            }) 
+          }
+        },
+        fail: function(e){
+          wx.showToast({
+            title: '查询错误',
+            icon: 'none',    //如果要纯文本，不要icon，将值设为'none'
+            duration: 2000     
+          })  
+        }
+      })
+    } else {
+      wx.showToast({
+        title: '查询错误',
+        content: '请确认订单号',
+        icon: 'none',    //如果要纯文本，不要icon，将值设为'none'
+        duration: 2000     
+      }) 
+    }
+  },
   bindPickerChange: function(e) {
     this.setData({
       index: e.detail.value
@@ -140,6 +147,26 @@ Page({
   bindNumber(e) {
     this.setData({
       number: e.detail.value
+    })
+  },
+  bindScan(e) {
+    let that = this
+    wx.scanCode({
+      onlyFromCamera: false,
+      scanType:['qrCode'],
+      success: function(res) {
+        that.setData({
+          number: res.result
+        })
+        console.log(res);
+      },
+      fail: function() {
+        wx.showToast({
+          title: '扫码失败',
+          duration: 2000,
+          icon: 'none'
+        })
+      }
     })
   }
 })

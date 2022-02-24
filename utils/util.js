@@ -22,10 +22,11 @@ const getLogisticsInformation = function(number, type, successFun, failFun) {
       query = "&type="+type
     }
     wx.request({
-      url: `http(s)://wuliu.market.alicloudapi.com/kdi?no=`+number+`&type=`+type,
+      url: `https://wuliu.market.alicloudapi.com/kdi?no=`+number+`&type=`+type+"&AppCode="+"1eb6a5d788e24b1bafca11c0dfbcb67d",
       method: 'GET',
       header: {
-        'Authorization': 'APPCODE 1eb6a5d788e24b1bafca11c0dfbcb67d'
+        'content-type': 'application/json',        
+        // 'Authorization': 'APPCODE 1eb6a5d788e24b1bafca11c0dfbcb67d'
       },
       success: successFun,
       fail: failFun

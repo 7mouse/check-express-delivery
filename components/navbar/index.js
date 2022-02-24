@@ -39,6 +39,11 @@ Component({
       wx.navigateTo({
         url: '/pages/index/index'
       })
+    },
+    toInfo() {
+      wx.navigateTo({
+        url: '/pages/userinfo/userinfo',
+      })
     }
   }
 })

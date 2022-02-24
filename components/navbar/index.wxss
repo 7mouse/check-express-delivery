@@ -20,7 +20,7 @@
   padding-left: 40rpx;
 }
 
-.nav-icon {
+image {
   width: 40rpx;
   height: 40rpx;
 }

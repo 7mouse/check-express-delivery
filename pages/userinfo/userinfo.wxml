@@ -1,0 +1,24 @@
+<!--index.wxml-->
+<view class="container">
+  <nav-bar navbar-data="{{navbarData}}"></nav-bar>
+  <view class="logo-view">
+    <image src="./logo.png" class="logo" mode="widthFix"></image>
+  </view> 
+  <view class="info-panel">
+    <view class="column">
+      <view class="info-name">名字: </view>
+      <view class="info-name">性别: </view>
+      <view class="info-name">年龄: </view>
+      <view class="info-name">所在地: </view>
+      <view class="info-name">电话: </view>
+    </view>
+    <view class="column">
+      <view class="info-item">{{data.name}}</view>
+      <view class="info-item">{{data.sex}}</view>
+      <view class="info-item">{{data.age}}</view>
+      <view class="info-item">{{data.place}}</view>
+      <view class="info-item">{{data.phone}}</view>
+    </view>
+  </view>
+  <view class="return_home" catchtap="returnHome">返回主页</view>
+</view>

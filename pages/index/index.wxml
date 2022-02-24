@@ -7,11 +7,10 @@
   <view class="input-view">
     <view class="input">
       <input placeholder="请输入快递单号" model:value="{{number}}" bindinput="bindNumber"></input>
-      <image src="./2.svg" class="btn-scan" mode="widthFix"></image>
+      <image src="./2.svg" class="btn-scan" mode="widthFix" bindtap="bindScan"></image>
     </view>
       <view class="btn-check" catchtap="getContent">查询</view>
   </view>
-  <!-- <view >点击选择快递公司</view>  -->
 
   <picker header-text="快递公司" bindchange="bindPickerChange" range="{{objectArray}}" range-key="name">
     <view wx:if="{{index == 0}}" class="btn-select-companies">
@@ -29,9 +28,9 @@
       <view>快递状态:{{infoTop.status}}</view>
       <view>快递员:{{infoTop.courier}}</view>
       <view>联系方式:{{infoTop.courierPhone}}</view>
+      <view>快递路径:</view>
     </view>
-    <view>快递路径:</view>
-    <view wx:for="{{list}}" wx:if="list != []"  wx:for-item="item" wx:key="time">
+    <view wx:for="{{list}}" wx:if="showInfo"  wx:for-item="item" wx:key="time">
       <view>Time: {{item.time}}</view>
       <view>Info: {{item.status}}</view>
     </view>
